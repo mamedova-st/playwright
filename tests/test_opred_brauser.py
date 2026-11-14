@@ -1,10 +1,11 @@
 #фио: Мамедова Хадижа Садыг кызы
 #дата: 14.11.26
-#время: 23:18
-#описание: этот тест открывает сайт и разрешает запуск теста ТОЛЬКО в браузере Chromium
+#время: 23:55
+#описание изменений:поменяла сайт на википедию и добавила проверку заголовка,тест будет запущен в firefox
 import pytest
+from playwright.sync_api import Page
 
-@pytest.mark.only_browser("chromium")
-def test_visit_example(page):
-    page.goto("https://example.com")
-    # ...
+@pytest.mark.skip_browser("firefox")
+def test_visit_example(page: Page):
+    page.goto("https://www.wikipedia.org/")
+    assert "Wikipedia" in page.title()
